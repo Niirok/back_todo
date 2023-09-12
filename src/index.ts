@@ -17,7 +17,8 @@ dialectOptions: {
       require: true,
       rejectUnauthorized: false,
     },
-  },
+    },
+    dialectModule: require('pg'),
 });
 
 
