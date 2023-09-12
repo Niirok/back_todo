@@ -9,10 +9,17 @@ const username = process.env.USERNAME as string;
 const password = process.env.PASSWORD as string;
 const server = process.env.SERVER as string;
 
-const sequelize = new Sequelize({
-    dialect: "sqlite",
-    storage: "./db.sqlite",
-  })
+const sequelize = new Sequelize('neondb', 'Niirok', 'ChtL1kmVDf7G', {
+host: 'ep-sweet-lake-23223658.eu-central-1.aws.neon.tech',
+dialect: 'postgres',
+dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+});
+
 
 async function connexionTest() {
 try {
@@ -34,8 +41,6 @@ const Todo = sequelize.define('Todo', {
         type: DataTypes.BOOLEAN
     }
 })
-
-Todo.sync();
 
 app.get('/', function (_, res) {
     res.send(200)
